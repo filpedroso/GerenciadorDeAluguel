@@ -97,3 +97,4 @@ C:\Users\dti-\source\repos\GerenciadorDeAluguel\GerenciadorDeAluguel\obj\Debug\n
 C:\Users\dti-\source\repos\GerenciadorDeAluguel\GerenciadorDeAluguel\obj\Debug\net8.0\GerenciadorDeAluguel.pdb
 C:\Users\dti-\source\repos\GerenciadorDeAluguel\GerenciadorDeAluguel\obj\Debug\net8.0\GerenciadorDeAluguel.genruntimeconfig.cache
 C:\Users\dti-\source\repos\GerenciadorDeAluguel\GerenciadorDeAluguel\obj\Debug\net8.0\ref\GerenciadorDeAluguel.dll
+C:\Users\dti-\source\repos\GerenciadorDeAluguel\GerenciadorDeAluguel\obj\Debug\net8.0\GerenciadorDeAluguel.sourcelink.json

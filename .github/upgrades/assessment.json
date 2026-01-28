@@ -1,0 +1,144 @@
+{
+  "settings": {
+    "components": {
+      "code": false,
+      "binaries": false
+    },
+    "targetId": "net8.0",
+    "targetDisplayName": ".NETCoreApp,Version=v8.0"
+  },
+  "analysisStartTime": "2026-01-26T17:23:20.0022656Z",
+  "analysisEndTime": "2026-01-26T17:23:22.0719417Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 1,
+      "issues": 2,
+      "incidents": 2,
+      "effort": 2
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 1,
+        "Optional": 1,
+        "Potential": 0,
+        "Information": 0
+      },
+      "category": {
+        "NuGet": 1,
+        "Project": 1
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "GerenciadorDeAluguel\\GerenciadorDeAluguel.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "GerenciadorDeAluguel",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net6.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 3,
+        "numberOfCodeFiles": 3,
+        "linesTotal": 47,
+        "linesOfCode": 47,
+        "totalApiScanned": 32,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "520a0c9c-9e53-4ad9-aa04-d56e7930ccc7",
+          "ruleId": "NuGet.0005",
+          "projectPath": "GerenciadorDeAluguel\\GerenciadorDeAluguel.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "xunit, 2.9.3\n\nRecomenda\u00E7\u00E3o:\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3",
+              "protected": "xunit, 2.9.3\n\nRecomenda\u00E7\u00E3o:\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3"
+            },
+            "kind": "File",
+            "path": "GerenciadorDeAluguel\\GerenciadorDeAluguel.csproj",
+            "snippet": "xunit, 2.9.3\n\nRecomenda\u00E7\u00E3o:\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3",
+            "protectedSnippet": "xunit, 2.9.3\n\nRecomenda\u00E7\u00E3o:\n\nGuide for migrating from xUnit.net v2 to v3: https://xunit.net/docs/getting-started/v3/migration\nRemove xunit, and replace with new package xunit, 2.9.3",
+            "label": "xunit 2.9.3",
+            "properties": {
+              "PackageId": "xunit",
+              "PackageVersion": "2.9.3",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "d05df2f0-7c2c-437a-9154-bbdd4bc7d5cc",
+          "ruleId": "Project.0002",
+          "projectPath": "GerenciadorDeAluguel\\GerenciadorDeAluguel.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Estrutura de destino atual: net6.0\nEstrutura de destino recomendada: net8.0",
+              "protected": "Estrutura de destino atual: net6.0\nEstrutura de destino recomendada: net8.0"
+            },
+            "kind": "File",
+            "path": "GerenciadorDeAluguel\\GerenciadorDeAluguel.csproj",
+            "snippet": "Estrutura de destino atual: net6.0\nEstrutura de destino recomendada: net8.0",
+            "protectedSnippet": "Estrutura de destino atual: net6.0\nEstrutura de destino recomendada: net8.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0",
+              "RecommendedTargetFramework": "net8.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "NuGet.0005": {
+      "id": "NuGet.0005",
+      "isFeature": false,
+      "description": "O pacote NuGet foi preterido.\n\nConsulte sua documenta\u00E7\u00E3o e verifique se h\u00E1 alguma orienta\u00E7\u00E3o para a substitui\u00E7\u00E3o da funcionalidade fornecida por esse pacote.",
+      "label": "O pacote NuGet foi preterido",
+      "severity": "Optional",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262531",
+          "isCustom": false
+        }
+      ]
+    },
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "A estrutura de destino do projeto precisa ser alterada para a nova estrutura de destino que voc\u00EA selecionou para essa atualiza\u00E7\u00E3o.\n\nDurante a atualiza\u00E7\u00E3o, a estrutura de destino ser\u00E1 ajustada para a plataforma correspondente, quando aplic\u00E1vel. Em alguns casos, o projeto ter\u00E1 v\u00E1rias estruturas de destino ap\u00F3s\u00A0a atualiza\u00E7\u00E3o se estiver usando recursos que agora t\u00EAm suas pr\u00F3prias plataformas nas estruturas modernas do .NET (Windows, iOS, Android etc.).",
+      "label": "As estruturas de destino do projeto precisam ser alteradas",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Vis\u00E3o geral da portabilidade do .NET Framework para o .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": "SDKs do projeto .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    }
+  }
+}
