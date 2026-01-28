@@ -1,7 +1,7 @@
 using GerenciadorDeAluguel.Domain.ValueObjects;
 using Xunit;
 
-namespace GerenciadorDeAluguel.Tests
+namespace GerenciadorDeAluguel.Tests.TestValueObjects
 {
     public class TestMoney
     {
