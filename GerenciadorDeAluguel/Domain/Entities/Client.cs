@@ -14,10 +14,18 @@ namespace GerenciadorDeAluguel.Domain.Entities
 
         public Client(string name, string email, string phone, string cpfOrCnpj, Address? residentialAddress = null)
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name), "Client must have a name");
-            Email = email ?? throw new ArgumentNullException(nameof(email), "Client must have an email");
-            Phone = phone ?? throw new ArgumentNullException(nameof(phone), "Client must have a phone number");
-            CpfOrCnpj = cpfOrCnpj ?? throw new ArgumentNullException(nameof(cpfOrCnpj), "Client must have a CPF or CNPJ");
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Client must have a name", nameof(name));
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Client must have an email", nameof(email));
+            if (string.IsNullOrWhiteSpace(phone))
+                throw new ArgumentException("Client must have a phone number", nameof(phone));
+            if (string.IsNullOrWhiteSpace(cpfOrCnpj))
+                throw new ArgumentException("Client must have a CPF or CNPJ", nameof(cpfOrCnpj));
+            Name = name;
+            Email = email;
+            Phone = phone;
+            CpfOrCnpj = cpfOrCnpj;
             Id = Guid.NewGuid();
             ResidentialAddress = residentialAddress;
         }

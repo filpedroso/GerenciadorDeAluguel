@@ -1,0 +1,25 @@
+Suggested TDD Roadmap
+1. Complete Value Objects Layer
+Start with more foundational value objects:
+
+Address - Street, city, zip code, country validation
+Email / PhoneNumber - Contact information with validation
+Document (CPF/CNPJ) - Tenant/owner identification
+
+2. Core Domain Entities
+Build the main entities test-first:
+
+Property - The rental unit (address, type, size, monthly rent as Money)
+Tenant - Person renting (name, contact, document)
+Owner - Property owner
+Lease - Contract linking tenant to property (uses Period, Money for rent)
+
+3. Domain Services / Business Rules
+RentCalculator - Calculate rent with adjustments, late fees
+LeaseValidator - Validate lease terms, overlapping periods
+PaymentProcessor - Track payments, generate receipts
+
+4. Application Layer (Use Cases)
+CreateLeaseUseCase
+RegisterPaymentUseCase
+ListOverduePaymentsUseCase
