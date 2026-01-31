@@ -2,146 +2,104 @@ namespace GerenciadorDeAluguel.Domain.ValueObjects
 {
     internal static class DocumentValidator
     {
-        public static bool ValidateCpf(string normalizedValue)
+        /// <summary>
+        /// Validates a CPF (Cadastro de Pessoas Físicas) using modulo 11 algorithm.
+        /// </summary>
+        /// <param name="normalizedValue">11-digit normalized string (digits only)</param>
+        /// <returns>True if valid CPF, false otherwise</returns>
+        public static bool ValidateCpf(string cpf)
         {
-            if (normalizedValue?.Length != 11)
+        if (string.IsNullOrEmpty(cpf) || cpf.Length != 11)
+            return false;
+
+        // Only digits
+        for (int i = 0; i < 11; i++)
+            if (cpf[i] < '0' || cpf[i] > '9')
                 return false;
 
-            var allTheSameChar = normalizedValue.All(c => c == normalizedValue[0]);
-            if (allTheSameChar)
-                return false;
+        // Reject all-same-digit CPFs (common invalids)
+        if (cpf.AsSpan().IndexOfAnyExcept(cpf[0]) == -1)
+            return false;
 
-            // Calculate first verification digit
+        static int CalcDigit(ReadOnlySpan<char> digits, int startWeight)
+        {
             int sum = 0;
-            int multiplier = 10;
-
-            for (int i = 0; i < 9; i++)
-            {
-                if (!int.TryParse(normalizedValue[i].ToString(), out int digit))
-                    return false;
-
-                sum += digit * multiplier;
-                multiplier--;
-            }
+            for (int i = 0; i < digits.Length; i++)
+                sum += (digits[i] - '0') * (startWeight - i);
 
             int remainder = sum % 11;
-            int firstDigit = remainder < 2 ? 0 : 11 - remainder;
-
-            // Validate first digit
-            if (!int.TryParse(normalizedValue[9].ToString(), out int providedFirstDigit) ||
-                providedFirstDigit != firstDigit)
-                return false;
-
-            // Calculate second verification digit
-            sum = 0;
-            multiplier = 11;
-
-            for (int i = 0; i < 10; i++)
-            {
-                if (!int.TryParse(normalizedValue[i].ToString(), out int digit))
-                    return false;
-
-                sum += digit * multiplier;
-                multiplier--;
-            }
-
-            remainder = sum % 11;
-            int secondDigit = remainder < 2 ? 0 : 11 - remainder;
-
-            // Validate second digit
-            if (!int.TryParse(normalizedValue[10].ToString(), out int providedSecondDigit) ||
-                providedSecondDigit != secondDigit)
-                return false;
-
-            return true;
+            return remainder < 2 ? 0 : 11 - remainder;
         }
 
+        int dv1 = CalcDigit(cpf.AsSpan(0, 9), startWeight: 10);
+        if (cpf[9] - '0' != dv1)
+            return false;
+
+        int dv2 = CalcDigit(cpf.AsSpan(0, 10), startWeight: 11);
+        if (cpf[10] - '0' != dv2)
+            return false;
+
+        return true;
+        }
+
+        /// <summary>
+        /// Validates an alphanumeric CNPJ using modulo 11 algorithm (2026+ format).
+        /// </summary>
+        /// <param name="normalizedValue">14-character normalized string (12 alphanumeric + 2 numeric check digits)</param>
+        /// <returns>True if valid CNPJ, false otherwise</returns>
         public static bool ValidateCnpj(string normalizedValue)
         {
-            // Early return for invalid length
-            if (normalizedValue?.Length != 14)
-                return false;
+        if (string.IsNullOrWhiteSpace(normalizedValue) || normalizedValue.Length != 14)
+            return false;
 
-            // Reject all same characters pattern
-            if (normalizedValue[0] == normalizedValue[1])
-            {
-                var allSame = normalizedValue.All(c => c == normalizedValue[0]);
-                if (allSame)
-                    return false;
-            }
+        // CNPJ alfanumérico: 12 primeiros [0-9A-Z], 2 últimos dígitos [0-9]
+        // Normalize to uppercase to match ASCII table in the guideline
+        normalizedValue = normalizedValue.ToUpperInvariant();
 
-            // Validate that first 12 characters are alphanumeric and last 2 are numeric
-            for (int i = 0; i < 12; i++)
-            {
-                char c = normalizedValue[i];
-                if (!char.IsLetterOrDigit(c))
-                    return false;
-            }
+        for (int i = 0; i < 12; i++)
+        {
+            char c = normalizedValue[i];
+            bool ok = (c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z');
+            if (!ok) return false;
+        }
 
-            for (int i = 12; i < 14; i++)
-            {
-                if (!char.IsDigit(normalizedValue[i]))
-                    return false;
-            }
+        if (!(normalizedValue[12] >= '0' && normalizedValue[12] <= '9')) return false;
+        if (!(normalizedValue[13] >= '0' && normalizedValue[13] <= '9')) return false;
 
-            // Calculate first verification digit using weights 2-9 for the first 12 characters
+        static int CharToValue(char c)
+        {
+            // spec: use ASCII decimal and subtract 48
+            // '0'..'9' => 0..9 ; 'A'..'Z' => 17..42
+            return (int)c - 48;
+        }
+
+        static int CalcDv(ReadOnlySpan<char> chars, ReadOnlySpan<int> weights)
+        {
             int sum = 0;
-            int[] weights = { 2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5 };
-
-            for (int i = 0; i < 12; i++)
-            {
-                int value = ConvertAlphanumericToValue(normalizedValue[i]);
-                if (value == -1)
-                    return false;
-
-                sum += value * weights[i];
-            }
+            for (int i = 0; i < weights.Length; i++)
+                sum += CharToValue(chars[i]) * weights[i];
 
             int remainder = sum % 11;
-            int firstDigit = remainder < 2 ? 0 : 11 - remainder;
-
-            // Validate first check digit
-            if (!int.TryParse(normalizedValue[12].ToString(), out int providedFirstDigit) ||
-                providedFirstDigit != firstDigit)
-                return false;
-
-            // Calculate second verification digit: include first check digit in calculation
-            sum = 0;
-            weights = new[] { 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5, 6, 7 };
-
-            // First 12 characters + first check digit
-            for (int i = 0; i < 12; i++)
-            {
-                int value = ConvertAlphanumericToValue(normalizedValue[i]);
-                sum += value * weights[i];
-            }
-
-            sum += firstDigit * weights[12];
-            remainder = sum % 11;
-            int secondDigit = remainder < 2 ? 0 : 11 - remainder;
-
-            // Validate second check digit
-            if (!int.TryParse(normalizedValue[13].ToString(), out int providedSecondDigit) ||
-                providedSecondDigit != secondDigit)
-                return false;
-
-            return true;
+            return remainder < 2 ? 0 : 11 - remainder;
         }
 
-        private static int ConvertAlphanumericToValue(char c)
-        {
-            if (char.IsDigit(c))
-                return c - '0';
+        ReadOnlySpan<int> w1 = new[] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+        ReadOnlySpan<int> w2 = new[] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 
-            if (char.IsLetter(c))
-            {
-                char upper = char.ToUpperInvariant(c);
-                if (upper >= 'A' && upper <= 'Z')
-                    return (upper - 'A') + 10;
-            }
+        int dv1 = CalcDv(normalizedValue.AsSpan(0, 12), w1);
+        if (normalizedValue[12] - '0' != dv1)
+            return false;
 
-            return -1;
+        // For DV2 we use the first 12 chars + DV1 as the 13th char
+        Span<char> first13 = stackalloc char[13];
+        normalizedValue.AsSpan(0, 12).CopyTo(first13);
+        first13[12] = (char)('0' + dv1);
+
+        int dv2 = CalcDv(first13, w2);
+        if (normalizedValue[13] - '0' != dv2)
+            return false;
+
+        return true;
         }
-
     }
 }

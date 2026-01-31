@@ -10,7 +10,7 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
         [Fact]
         public void ShouldCreateWithValidCpf()
         {
-            var cpf = "12435678909";
+            var cpf = "08903320611";
             var document = new Document(cpf);
             Assert.Equal(cpf, document.Value);
             Assert.True(document.IsCpf);
@@ -20,9 +20,9 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
         [Fact]
         public void ShouldCreateWithValidCpfFormatted()
         {
-            var cpfFormatted = "123.456.789-09"; // Same as above, formatted
+            var cpfFormatted = "089.033.206-11";
             var document = new Document(cpfFormatted);
-            Assert.Equal("12345678909", document.Value); // Should normalize
+            Assert.Equal("08903320611", document.Value);
             Assert.True(document.IsCpf);
             Assert.False(document.IsCnpj);
         }
@@ -30,7 +30,7 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
         [Fact]
         public void ShouldCreateWithValidCnpj()
         {
-            var cnpj = "12345678000195";
+            var cnpj = "42960849000319";
             var document = new Document(cnpj);
             Assert.Equal(cnpj, document.Value);
             Assert.True(document.IsCnpj);
@@ -40,9 +40,9 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
         [Fact]
         public void ShouldCreateWithValidCnpjFormatted()
         {
-            var cnpjFormatted = "12.345.678/0001-95"; // Same as above, formatted
+            var cnpjFormatted = "42.960.849/0003-19";
             var document = new Document(cnpjFormatted);
-            Assert.Equal("12345678000195", document.Value); // Should normalize
+            Assert.Equal("42960849000319", document.Value); // Should normalize
             Assert.True(document.IsCnpj);
             Assert.False(document.IsCpf);
         }

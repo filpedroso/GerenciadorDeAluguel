@@ -7,16 +7,16 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
 {
     public class TestProperty
     {
-        public Address CreateDefaultAddress() =>
+        public Address CreateValidAddress() =>
             new Address("Rua do Amendoim", "2222", "31321-123", "Belo Horizonte", "MG");
-        public Client CreateDefaultClient() =>
+        public Client CreateValidClient() =>
             new Client("Renato Manfredini", "rr@dti.com.br", "31997979797", "08908908911");
 
         [Fact]
         public void ShouldCreatePropertyWithValidData()
         {
-            var address = CreateDefaultAddress();
-            var owner = CreateDefaultClient();
+            var address = CreateValidAddress();
+            var owner = CreateValidClient();
             var monthlyRent = new Money(900.00m);
 
             var property = new Property(owner, address, monthlyRent, PropertyType.House);
@@ -31,7 +31,7 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
         [Fact]
         public void ShouldDefaultStatusToAvailable()
         {
-            var property = new Property(CreateDefaultClient(), CreateDefaultAddress(), new Money(1000m), PropertyType.Apartment);
+            var property = new Property(CreateValidClient(), CreateValidAddress(), new Money(1000m), PropertyType.Apartment);
 
             Assert.Equal(PropertyStatus.Available, property.Status);
         }
@@ -39,13 +39,13 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
         [Fact]
         public void ShouldRequireAddress()
         {
-            Assert.Throws<ArgumentNullException>(() => new Property(CreateDefaultClient(), null!, new Money(1000m), PropertyType.House));
+            Assert.Throws<ArgumentNullException>(() => new Property(CreateValidClient(), null!, new Money(1000m), PropertyType.House));
         }
 
         [Fact]
         public void ShouldRequireMonthlyRent()
         {
-            Assert.Throws<ArgumentNullException>(() => new Property(CreateDefaultClient(), CreateDefaultAddress(), null!, PropertyType.House));
+            Assert.Throws<ArgumentNullException>(() => new Property(CreateValidClient(), CreateValidAddress(), null!, PropertyType.House));
         }
     }
 }
