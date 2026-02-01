@@ -1,29 +1,13 @@
 using GerenciadorDeAluguel.Domain.Entities;
-using GerenciadorDeAluguel.Domain.ValueObjects;
 using GerenciadorDeAluguel.Domain.Enums;
+using GerenciadorDeAluguel.Domain.ValueObjects;
 using Xunit;
+using static GerenciadorDeAluguel.Tests.Builders.TestDataBuilder;
 
 namespace GerenciadorDeAluguel.Tests.TestDomainObjects
 {
     public class TestReservation
     {
-        private Client CreateValidClient() =>
-            new Client("Maria Souza", "maria@email.com", "31988887777", "98765432100");
-
-        private Client CreateValidOwner() =>
-            new Client("João Dono", "joao@email.com", "31988889999", "12345678901");
-
-        private Property CreateValidProperty() =>
-            new Property(
-                CreateValidOwner(),
-                new Address("Rua das Laranjeiras", "100", "31234-567", "Belo Horizonte", "MG"),
-                new Money(1200.00m),
-                PropertyType.Apartment
-            );
-
-        private Period CreateValidPeriod() =>
-            new Period(new DateTime(2026, 2, 1), new DateTime(2026, 2, 28));
-
         [Fact]
         public void ShouldCreateReservationWithValidData()
         {
@@ -44,25 +28,53 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
         [Fact]
         public void ShouldRequireClient()
         {
-            Assert.Throws<ArgumentNullException>(() => new Reservation(null!, CreateValidProperty(), CreateValidPeriod(), new Money(1200.00m)));
+            Assert.Throws<ArgumentNullException>(() =>
+                new Reservation(
+                    null!,
+                    CreateValidProperty(),
+                    CreateValidPeriod(),
+                    new Money(1200.00m)
+                )
+            );
         }
 
         [Fact]
         public void ShouldRequireProperty()
         {
-            Assert.Throws<ArgumentNullException>(() => new Reservation(CreateValidClient(), null!, CreateValidPeriod(), new Money(1200.00m)));
+            Assert.Throws<ArgumentNullException>(() =>
+                new Reservation(
+                    CreateValidClient(),
+                    null!,
+                    CreateValidPeriod(),
+                    new Money(1200.00m)
+                )
+            );
         }
 
         [Fact]
         public void ShouldRequirePeriod()
         {
-            Assert.Throws<ArgumentNullException>(() => new Reservation(CreateValidClient(), CreateValidProperty(), null!, new Money(1200.00m)));
+            Assert.Throws<ArgumentNullException>(() =>
+                new Reservation(
+                    CreateValidClient(),
+                    CreateValidProperty(),
+                    null!,
+                    new Money(1200.00m)
+                )
+            );
         }
 
         [Fact]
         public void ShouldRequireMonthlyRent()
         {
-            Assert.Throws<ArgumentNullException>(() => new Reservation(CreateValidClient(), CreateValidProperty(), CreateValidPeriod(), null!));
+            Assert.Throws<ArgumentNullException>(() =>
+                new Reservation(
+                    CreateValidClient(),
+                    CreateValidProperty(),
+                    CreateValidPeriod(),
+                    null!
+                )
+            );
         }
 
         [Fact]
@@ -78,7 +90,9 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
             // Simulate property not available
             typeof(Property).GetProperty("Status")!.SetValue(property, PropertyStatus.Rented);
 
-            Assert.Throws<InvalidOperationException>(() => new Reservation(client, property, CreateValidPeriod(), new Money(1200.00m)));
+            Assert.Throws<InvalidOperationException>(() =>
+                new Reservation(client, property, CreateValidPeriod(), new Money(1200.00m))
+            );
         }
     }
 }

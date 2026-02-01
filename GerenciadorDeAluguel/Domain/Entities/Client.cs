@@ -12,7 +12,13 @@ namespace GerenciadorDeAluguel.Domain.Entities
         public string CpfOrCnpj { get; }
         public Address? ResidentialAddress { get; }
 
-        public Client(string name, string email, string phone, string cpfOrCnpj, Address? residentialAddress = null)
+        public Client(
+            string name,
+            string email,
+            string phone,
+            string cpfOrCnpj,
+            Address? residentialAddress = null
+        )
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Client must have a name", nameof(name));

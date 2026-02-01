@@ -26,7 +26,9 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
         [Fact]
         public void ShouldRequireName()
         {
-            Assert.Throws<ArgumentException>(() => new Client(null!, "a@b.com", "123", "12345678900"));
+            Assert.Throws<ArgumentException>(() =>
+                new Client(null!, "a@b.com", "123", "12345678900")
+            );
             Assert.Throws<ArgumentException>(() => new Client("", "a@b.com", "123", "12345678900"));
         }
 
@@ -40,8 +42,12 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
         [Fact]
         public void ShouldRequirePhone()
         {
-            Assert.Throws<ArgumentException>(() => new Client("João", "a@b.com", null!, "12345678900"));
-            Assert.Throws<ArgumentException>(() => new Client("João", "a@b.com", "", "12345678900"));
+            Assert.Throws<ArgumentException>(() =>
+                new Client("João", "a@b.com", null!, "12345678900")
+            );
+            Assert.Throws<ArgumentException>(() =>
+                new Client("João", "a@b.com", "", "12345678900")
+            );
         }
 
         [Fact]

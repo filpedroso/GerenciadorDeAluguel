@@ -27,7 +27,14 @@ namespace GerenciadorDeAluguel.Tests.TestValueObjects
         [Fact]
         public void ShouldCreateAddressWithComplement()
         {
-            var address = new Address("Janete Clair", "242", "31565-400", "Belo Horizonte", "MG", "Apt 101");
+            var address = new Address(
+                "Janete Clair",
+                "242",
+                "31565-400",
+                "Belo Horizonte",
+                "MG",
+                "Apt 101"
+            );
 
             Assert.Equal("Apt 101", address.Complement);
         }
@@ -35,41 +42,71 @@ namespace GerenciadorDeAluguel.Tests.TestValueObjects
         [Fact]
         public void ShouldNotAllowEmptyStreet()
         {
-            Assert.Throws<ArgumentException>(() => new Address("", "242", "31565-400", "Belo Horizonte", "MG"));
-            Assert.Throws<ArgumentException>(() => new Address("   ", "242", "31565-400", "Belo Horizonte", "MG"));
-            Assert.Throws<ArgumentException>(() => new Address(null!, "242", "31565-400", "Belo Horizonte", "MG"));
+            Assert.Throws<ArgumentException>(() =>
+                new Address("", "242", "31565-400", "Belo Horizonte", "MG")
+            );
+            Assert.Throws<ArgumentException>(() =>
+                new Address("   ", "242", "31565-400", "Belo Horizonte", "MG")
+            );
+            Assert.Throws<ArgumentException>(() =>
+                new Address(null!, "242", "31565-400", "Belo Horizonte", "MG")
+            );
         }
 
         [Fact]
         public void ShouldNotAllowEmptyNumber()
         {
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", "", "31565-400", "Belo Horizonte", "MG"));
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", "   ", "31565-400", "Belo Horizonte", "MG"));
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", null!, "31565-400", "Belo Horizonte", "MG"));
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", "", "31565-400", "Belo Horizonte", "MG")
+            );
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", "   ", "31565-400", "Belo Horizonte", "MG")
+            );
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", null!, "31565-400", "Belo Horizonte", "MG")
+            );
         }
 
         [Fact]
         public void ShouldNotAllowEmptyZipCode()
         {
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", "242", "", "Belo Horizonte", "MG"));
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", "242", "   ", "Belo Horizonte", "MG"));
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", "242", null!, "Belo Horizonte", "MG"));
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", "242", "", "Belo Horizonte", "MG")
+            );
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", "242", "   ", "Belo Horizonte", "MG")
+            );
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", "242", null!, "Belo Horizonte", "MG")
+            );
         }
 
         [Fact]
         public void ShouldNotAllowEmptyCity()
         {
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", "242", "31565-400", "", "MG"));
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", "242", "31565-400", "   ", "MG"));
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", "242", "31565-400", null!, "MG"));
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", "242", "31565-400", "", "MG")
+            );
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", "242", "31565-400", "   ", "MG")
+            );
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", "242", "31565-400", null!, "MG")
+            );
         }
 
         [Fact]
         public void ShouldNotAllowEmptyState()
         {
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", "242", "31565-400", "Belo Horizonte", ""));
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", "242", "31565-400", "Belo Horizonte", "   "));
-            Assert.Throws<ArgumentException>(() => new Address("Janete Clair", "242", "31565-400", "Belo Horizonte", null!));
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", "242", "31565-400", "Belo Horizonte", "")
+            );
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", "242", "31565-400", "Belo Horizonte", "   ")
+            );
+            Assert.Throws<ArgumentException>(() =>
+                new Address("Janete Clair", "242", "31565-400", "Belo Horizonte", null!)
+            );
         }
     }
 }

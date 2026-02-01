@@ -32,11 +32,12 @@ namespace GerenciadorDeAluguel.Domain.ValueObjects
             else
                 throw new ArgumentException("Value is neither valid CPF nor CNPJ", nameof(value));
         }
+
         private static string Normalize(string value) =>
             new string(value.Where(char.IsAsciiLetterOrDigit).ToArray());
-        private static bool IsCpfFormat(string value) =>
-            value.Length == 11;
-        private static bool IsCnpjFormat(string value) =>
-            value.Length == 14;
+
+        private static bool IsCpfFormat(string value) => value.Length == 11;
+
+        private static bool IsCnpjFormat(string value) => value.Length == 14;
     }
 }

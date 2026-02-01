@@ -5,6 +5,6 @@ namespace GerenciadorDeAluguel.Domain.Enums
         House,
         Apartment,
         Commercial,
-        Land
+        Land,
     }
 }

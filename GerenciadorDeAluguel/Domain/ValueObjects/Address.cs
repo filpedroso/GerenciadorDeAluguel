@@ -9,7 +9,14 @@ namespace GerenciadorDeAluguel.Domain.ValueObjects
         public string State { get; }
         public string? Complement { get; }
 
-        public Address(string street, string number, string zipCode, string city, string state, string? complement = null)
+        public Address(
+            string street,
+            string number,
+            string zipCode,
+            string city,
+            string state,
+            string? complement = null
+        )
         {
             if (string.IsNullOrWhiteSpace(street))
                 throw new ArgumentException("Street is required", nameof(street));

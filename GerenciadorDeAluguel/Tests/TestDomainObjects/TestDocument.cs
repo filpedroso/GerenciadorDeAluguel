@@ -1,5 +1,3 @@
-using GerenciadorDeAluguel.Domain.Entities;
-using GerenciadorDeAluguel.Domain.Enums;
 using GerenciadorDeAluguel.Domain.ValueObjects;
 using Xunit;
 

@@ -10,7 +10,7 @@ namespace GerenciadorDeAluguel.Application.Services
             Property property,
             Period period,
             Money monthlyRent
-            )
+        )
         {
             return new Reservation(tenant, property, period, monthlyRent);
         }

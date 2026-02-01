@@ -5,6 +5,6 @@ namespace GerenciadorDeAluguel.Domain.Enums
         Available,
         Rented,
         UnderMaintenance,
-        Unavailable
+        Unavailable,
     }
 }

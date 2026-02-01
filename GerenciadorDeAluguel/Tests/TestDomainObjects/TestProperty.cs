@@ -9,6 +9,7 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
     {
         public Address CreateValidAddress() =>
             new Address("Rua do Amendoim", "2222", "31321-123", "Belo Horizonte", "MG");
+
         public Client CreateValidClient() =>
             new Client("Renato Manfredini", "rr@dti.com.br", "31997979797", "08908908911");
 
@@ -31,7 +32,12 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
         [Fact]
         public void ShouldDefaultStatusToAvailable()
         {
-            var property = new Property(CreateValidClient(), CreateValidAddress(), new Money(1000m), PropertyType.Apartment);
+            var property = new Property(
+                CreateValidClient(),
+                CreateValidAddress(),
+                new Money(1000m),
+                PropertyType.Apartment
+            );
 
             Assert.Equal(PropertyStatus.Available, property.Status);
         }
@@ -39,13 +45,17 @@ namespace GerenciadorDeAluguel.Tests.TestDomainObjects
         [Fact]
         public void ShouldRequireAddress()
         {
-            Assert.Throws<ArgumentNullException>(() => new Property(CreateValidClient(), null!, new Money(1000m), PropertyType.House));
+            Assert.Throws<ArgumentNullException>(() =>
+                new Property(CreateValidClient(), null!, new Money(1000m), PropertyType.House)
+            );
         }
 
         [Fact]
         public void ShouldRequireMonthlyRent()
         {
-            Assert.Throws<ArgumentNullException>(() => new Property(CreateValidClient(), CreateValidAddress(), null!, PropertyType.House));
+            Assert.Throws<ArgumentNullException>(() =>
+                new Property(CreateValidClient(), CreateValidAddress(), null!, PropertyType.House)
+            );
         }
     }
 }

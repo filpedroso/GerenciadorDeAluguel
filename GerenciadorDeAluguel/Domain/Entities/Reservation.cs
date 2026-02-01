@@ -1,5 +1,5 @@
-using GerenciadorDeAluguel.Domain.ValueObjects;
 using GerenciadorDeAluguel.Domain.Enums;
+using GerenciadorDeAluguel.Domain.ValueObjects;
 
 namespace GerenciadorDeAluguel.Domain.Entities
 {
@@ -16,11 +16,17 @@ namespace GerenciadorDeAluguel.Domain.Entities
             if (tenant == null)
                 throw new ArgumentNullException(nameof(tenant), "Reservation must have a tenant");
             if (property == null)
-                throw new ArgumentNullException(nameof(property), "Reservation must have a property");
+                throw new ArgumentNullException(
+                    nameof(property),
+                    "Reservation must have a property"
+                );
             if (period == null)
                 throw new ArgumentNullException(nameof(period), "Reservation must have a period");
             if (monthlyRent == null)
-                throw new ArgumentNullException(nameof(monthlyRent), "Reservation must have a monthly rent");
+                throw new ArgumentNullException(
+                    nameof(monthlyRent),
+                    "Reservation must have a monthly rent"
+                );
             if (property.Status != PropertyStatus.Available)
                 throw new InvalidOperationException("Property is not available for reservation");
 
