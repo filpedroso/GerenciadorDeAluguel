@@ -10,6 +10,8 @@ namespace GerenciadorDeAluguel.Domain.Entities
         public Property Property { get; }
         public Period Period { get; }
         public Money MonthlyRent { get; }
+        public bool IsCancelled { get; private set; }
+        public DateTime? CancelledAt { get; private set; }
 
         public Reservation(Client tenant, Property property, Period period, Money monthlyRent)
         {
@@ -35,6 +37,14 @@ namespace GerenciadorDeAluguel.Domain.Entities
             Property = property;
             Period = period;
             MonthlyRent = monthlyRent;
+        }
+
+        public void Cancel()
+        {
+            if (IsCancelled)
+                throw new InvalidOperationException("Already cancelled.");
+            IsCancelled = true;
+            CancelledAt = DateTime.UtcNow;
         }
     }
 }

@@ -7,17 +7,29 @@ namespace GerenciadorDeAluguel.Tests.Builders
 {
     public static class TestDataBuilder
     {
-        // VALUE OBJECTS
-        public static Document CreateValidCpf()
+        // VALID TEST DOCUMENTS (all pass modulo 11 validation)
+        public static class ValidDocuments
         {
-            var cpf = "08903320611";
-            return new Document(cpf);
+            // Valid CPFs
+            public const string CPF_1 = "08903320611";
+            public const string CPF_2 = "11144477735";
+            public const string CPF_3 = "00000000191";
+            
+            // Valid CNPJs
+            public const string CNPJ_1 = "42960849000319";
+            public const string CNPJ_2 = "11222333000181";
+            public const string CNPJ_3 = "00000000000191";
         }
 
-        public static Document CreateValidCnpj()
+        // VALUE OBJECTS
+        public static Document CreateValidCpf(string? cpf = null)
         {
-            var cnpj = "42960849000319";
-            return new Document(cnpj);
+            return new Document(cpf ?? ValidDocuments.CPF_1);
+        }
+
+        public static Document CreateValidCnpj(string? cnpj = null)
+        {
+            return new Document(cnpj ?? ValidDocuments.CNPJ_1);
         }
 
         public static Address CreateValidAddress(
@@ -49,30 +61,45 @@ namespace GerenciadorDeAluguel.Tests.Builders
             string name = "Maria Souza",
             string email = "maria@email.com",
             string phone = "31988887777",
-            string document = "71250557315"
+            Document? document = null
         )
         {
-            return new Client(name, email, phone, document);
+            return new Client(
+                name, 
+                email, 
+                phone, 
+                document ?? CreateValidCpf()
+            );
         }
 
         public static Client CreateValidTenant(
             string name = "Jacare da Silva",
             string email = "jacare@email.com",
             string phone = "31987872323",
-            string document = "08903320611"
+            Document? document = null
         )
         {
-            return new Client(name, email, phone, document);
+            return new Client(
+                name, 
+                email, 
+                phone, 
+                document ?? CreateValidCpf(ValidDocuments.CPF_2)  // Use different CPF
+            );
         }
 
         public static Client CreateValidOwner(
             string name = "João Dono",
             string email = "joao@email.com",
             string phone = "31988889999",
-            string document = "42960849000319"
+            Document? document = null
         )
         {
-            return new Client(name, email, phone, document);
+            return new Client(
+                name, 
+                email, 
+                phone, 
+                document ?? CreateValidCnpj()
+            );
         }
 
         public static Property CreateValidProperty(
@@ -96,7 +123,7 @@ namespace GerenciadorDeAluguel.Tests.Builders
             Money? rent = null
         )
         {
-            var reservationTenant = tenant ?? CreateValidClient();
+            var reservationTenant = tenant ?? CreateValidTenant();  // Changed to use Tenant
             var reservationProperty = property ?? CreateValidProperty();
             var reservationPeriod = period ?? CreateValidPeriod();
             var reservationRent = rent ?? CreateValidMoney();

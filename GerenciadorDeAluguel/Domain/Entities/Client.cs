@@ -1,5 +1,6 @@
 using GerenciadorDeAluguel.Domain.Enums;
 using GerenciadorDeAluguel.Domain.ValueObjects;
+using Xunit.Sdk;
 
 namespace GerenciadorDeAluguel.Domain.Entities
 {
@@ -9,14 +10,14 @@ namespace GerenciadorDeAluguel.Domain.Entities
         public string Name { get; }
         public string Email { get; }
         public string Phone { get; }
-        public string CpfOrCnpj { get; }
-        public Address? ResidentialAddress { get; }
+        public Document DocumentNumber { get; }
+        public Address? ResidentialAddress { get; private set; }
 
         public Client(
             string name,
             string email,
             string phone,
-            string cpfOrCnpj,
+            Document documentNumber,
             Address? residentialAddress = null
         )
         {
@@ -26,14 +27,26 @@ namespace GerenciadorDeAluguel.Domain.Entities
                 throw new ArgumentException("Client must have an email", nameof(email));
             if (string.IsNullOrWhiteSpace(phone))
                 throw new ArgumentException("Client must have a phone number", nameof(phone));
-            if (string.IsNullOrWhiteSpace(cpfOrCnpj))
-                throw new ArgumentException("Client must have a CPF or CNPJ", nameof(cpfOrCnpj));
+            if (documentNumber == null)
+                throw new ArgumentNullException(nameof(documentNumber), "Client must have a CPF or CNPJ");
             Name = name;
             Email = email;
             Phone = phone;
-            CpfOrCnpj = cpfOrCnpj;
+            DocumentNumber = documentNumber;
             Id = Guid.NewGuid();
             ResidentialAddress = residentialAddress;
+        }
+        public void UpdateAddress(Address address)
+        {
+            ResidentialAddress = address;
+        }
+
+        private Client()
+        {
+            Name = null!;
+            Email = null!;
+            Phone = null!;
+            DocumentNumber = null!;
         }
     }
 }

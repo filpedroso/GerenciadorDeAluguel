@@ -2,17 +2,12 @@ using GerenciadorDeAluguel.Domain.Entities;
 using GerenciadorDeAluguel.Domain.Enums;
 using GerenciadorDeAluguel.Domain.ValueObjects;
 using Xunit;
+using static GerenciadorDeAluguel.Tests.Builders.TestDataBuilder;
 
 namespace GerenciadorDeAluguel.Tests.TestDomainObjects
 {
     public class TestProperty
     {
-        public Address CreateValidAddress() =>
-            new Address("Rua do Amendoim", "2222", "31321-123", "Belo Horizonte", "MG");
-
-        public Client CreateValidClient() =>
-            new Client("Renato Manfredini", "rr@dti.com.br", "31997979797", "08908908911");
-
         [Fact]
         public void ShouldCreatePropertyWithValidData()
         {

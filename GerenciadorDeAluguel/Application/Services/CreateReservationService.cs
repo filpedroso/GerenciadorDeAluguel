@@ -47,36 +47,3 @@ public class CreateReservationService
         return reservation.Id;
     }
 }
-
-/* using GerenciadorDeAluguel.Application.DTOs;
-using GerenciadorDeAluguel.Application.Ports;
-using GerenciadorDeAluguel.Domain.Entities;
-using GerenciadorDeAluguel.Domain.ValueObjects;
-
-namespace GerenciadorDeAluguel.Application.Services
-{
-    public class CreateReservationService
-    {
-        private IClientRepository ClientRepo;
-        private IPropertyRepository PropertyRepo;
-        private IReservationRepository ReservationRepo;
-
-        public CreateReservationService(IClientRepository clientRepo,
-                                        IPropertyRepository propertyRepo,
-                                        IReservationRepository reservationRepo)
-        {
-            ClientRepo = clientRepo;
-            PropertyRepo = propertyRepo;
-            ReservationRepo = reservationRepo;
-        }
-
-        public CreateAsync(CreateReservationCommandDTODTO command)
-        {
-            var client = ClientRepo.GetByIdAsync(command.ClientId);
-            var property = PropertyRepo.GetByIdAsync(command.PropertyId);
-            var period = new Period(command.CheckIn, command.CheckOut);
-
-            var reservation = new Reservation(client, property, period, property.Rent);
-        }
-    }
-} */

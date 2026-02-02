@@ -13,9 +13,10 @@ public class InMemoryReservationRepository : IReservationRepository
         return Task.CompletedTask;
     }
 
-    public Reservation? GetById(Guid id)
+    public Task<Reservation?> GetByIdAsync(Guid reservationId, CancellationToken ct = default)
     {
-        return _store.TryGetValue(id, out var reserv) ? reserv : null;
+        var reservation = _store.TryGetValue(reservationId, out var r) ? r : null;
+        return Task.FromResult(reservation);
     }
 
     public int Count => _store.Count;
