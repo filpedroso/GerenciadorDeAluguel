@@ -8,8 +8,8 @@ namespace GerenciadorDeAluguel.Tests.TestValueObjects
         [Fact]
         public void ShouldCreateWithValidPeriod()
         {
-            var start = new DateTime(year: 2026, month: 02, day: 01);
-            var end = new DateTime(year: 2026, month: 02, day: 28);
+            var start = new DateOnly(year: 2026, month: 02, day: 01);
+            var end = new DateOnly(year: 2026, month: 02, day: 28);
 
             var period = new Period(start, end);
 
@@ -20,8 +20,8 @@ namespace GerenciadorDeAluguel.Tests.TestValueObjects
         [Fact]
         public void ShouldNotAllowPeriodWithEndBeforeStart()
         {
-            var start = new DateTime(year: 2026, month: 02, day: 01);
-            var end = new DateTime(year: 2025, month: 01, day: 31);
+            var start = new DateOnly(year: 2026, month: 02, day: 01);
+            var end = new DateOnly(year: 2025, month: 01, day: 31);
 
             Assert.Throws<ArgumentException>(() => new Period(start, end));
         }

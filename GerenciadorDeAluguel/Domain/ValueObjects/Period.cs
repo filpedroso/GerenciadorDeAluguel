@@ -2,10 +2,10 @@ namespace GerenciadorDeAluguel.Domain.ValueObjects
 {
     public record Period
     {
-        public DateTime Start { get; }
-        public DateTime End { get; }
+        public DateOnly Start { get; }
+        public DateOnly End { get; }
 
-        public Period(DateTime start, DateTime end)
+        public Period(DateOnly start, DateOnly end)
         {
             if (start >= end)
                 throw new ArgumentException("End date must be after start date");

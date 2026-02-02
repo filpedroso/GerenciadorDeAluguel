@@ -36,10 +36,10 @@ namespace GerenciadorDeAluguel.Tests.Builders
             return new Money(amount);
         }
 
-        public static Period CreateValidPeriod(DateOnly? start = null, DateOnly? end = null)
+        public static Period CreateValidPeriod(DateTime? start = null, DateTime? end = null)
         {
-            var startDate = start ?? new DateOnly(2026, 2, 1);
-            var endDate = end ?? new DateOnly(2026, 2, 28);
+            var startDate = start ?? new DateTime(2026, 2, 1);
+            var endDate = end ?? new DateTime(2026, 2, 28);
             return new Period(startDate, endDate);
         }
 

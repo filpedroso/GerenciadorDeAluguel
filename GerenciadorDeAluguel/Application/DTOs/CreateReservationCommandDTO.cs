@@ -1,6 +1,6 @@
 namespace GerenciadorDeAluguel.Application.DTOs;
 
-public sealed record CreateReservationCommand(
+public sealed record CreateReservationCommandDTO(
     Guid PropertyId,
     Guid ClientId,
     DateOnly CheckIn,
