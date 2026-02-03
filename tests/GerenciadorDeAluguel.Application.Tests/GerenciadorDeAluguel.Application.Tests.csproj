@@ -20,4 +20,9 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\GerenciadorDeAluguel.Application\GerenciadorDeAluguel.Application.csproj" />
+    <ProjectReference Include="..\..\src\GerenciadorDeAluguel.Domain\GerenciadorDeAluguel.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\GerenciadorDeAluguel.csproj" />
+    <ProjectReference Include="..\GerenciadorDeAluguel.Application\GerenciadorDeAluguel.Application.csproj" />
+    <ProjectReference Include="..\GerenciadorDeAluguel.Domain\GerenciadorDeAluguel.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

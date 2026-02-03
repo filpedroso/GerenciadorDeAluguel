@@ -1,5 +1,5 @@
 using GerenciadorDeAluguel.Infrastructure;
-using GerenciadorDeAluguel.Tests.Builders;
+using GerenciadorDeAluguel.TestUtilities.Builders;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Xunit;

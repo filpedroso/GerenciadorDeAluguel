@@ -3,7 +3,7 @@ using GerenciadorDeAluguel.Domain.Entities;
 using GerenciadorDeAluguel.Domain.Enums;
 using GerenciadorDeAluguel.Domain.ValueObjects;
 
-namespace GerenciadorDeAluguel.Tests.Builders
+namespace GerenciadorDeAluguel.Domain.Tests.Builders
 {
     public static class TestDataBuilder
     {

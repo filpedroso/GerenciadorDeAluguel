@@ -2,7 +2,7 @@ using GerenciadorDeAluguel.Domain.Entities;
 using GerenciadorDeAluguel.Domain.Enums;
 using GerenciadorDeAluguel.Domain.ValueObjects;
 using Xunit;
-using static GerenciadorDeAluguel.Tests.Builders.TestDataBuilder;
+using static GerenciadorDeAluguel.Domain.Tests.Builders.TestDataBuilder;
 
 namespace GerenciadorDeAluguel.Tests.TestDomainObjects
 {

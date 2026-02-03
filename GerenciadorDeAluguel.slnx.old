@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/GerenciadorDeAluguel/">
+    <Project Path="GerenciadorDeAluguel/Infrastructure/GerenciadorDeAluguel.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/GerenciadorDeAluguel.Api/GerenciadorDeAluguel.Api.csproj" />
+    <Project Path="src/GerenciadorDeAluguel.Application/GerenciadorDeAluguel.Application.csproj" />
+    <Project Path="src/GerenciadorDeAluguel.Domain/GerenciadorDeAluguel.Domain.csproj" />
+    <Project Path="src/GerenciadorDeAluguel.Infrastructure/GerenciadorDeAluguel.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/GerenciadorDeAluguel.Api.Integration.Tests/GerenciadorDeAluguel.Api.Integration.Tests.csproj" />
+    <Project Path="tests/GerenciadorDeAluguel.Application.Tests/GerenciadorDeAluguel.Application.Tests.csproj" />
+    <Project Path="tests/GerenciadorDeAluguel.Domain.Tests/GerenciadorDeAluguel.Domain.Tests.csproj" />
+    <Project Path="tests/GerenciadorDeAluguel.Infrastructure.Tests/GerenciadorDeAluguel.Infrastructure.Tests.csproj" />
+  </Folder>
+  <Project Path="GerenciadorDeAluguel/GerenciadorDeAluguel.csproj" />
+</Solution>
