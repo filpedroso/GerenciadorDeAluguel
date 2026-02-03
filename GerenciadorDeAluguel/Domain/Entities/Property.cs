@@ -28,5 +28,10 @@ namespace GerenciadorDeAluguel.Domain.Entities
             Type = type;
             Status = PropertyStatus.Available;
         }
+
+        public void ChangeStatus(PropertyStatus newStatus)
+        {
+            Status = newStatus;
+        }
     }
 }
