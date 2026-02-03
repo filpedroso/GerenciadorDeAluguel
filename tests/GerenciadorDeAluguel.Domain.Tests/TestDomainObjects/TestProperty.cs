@@ -1,0 +1,56 @@
+using GerenciadorDeAluguel.Domain.Entities;
+using GerenciadorDeAluguel.Domain.Enums;
+using GerenciadorDeAluguel.Domain.ValueObjects;
+using Xunit;
+using static GerenciadorDeAluguel.Tests.Builders.TestDataBuilder;
+
+namespace GerenciadorDeAluguel.Tests.TestDomainObjects
+{
+    public class TestProperty
+    {
+        [Fact]
+        public void ShouldCreatePropertyWithValidData()
+        {
+            var address = CreateValidAddress();
+            var owner = CreateValidClient();
+            var monthlyRent = new Money(900.00m);
+
+            var property = new Property(owner, address, monthlyRent, PropertyType.House);
+
+            Assert.Equal(address, property.Address);
+            Assert.Equal(monthlyRent, property.MonthlyRent);
+            Assert.Equal(PropertyType.House, property.Type);
+            Assert.Equal(PropertyStatus.Available, property.Status);
+            Assert.NotEqual(Guid.Empty, property.Id);
+        }
+
+        [Fact]
+        public void ShouldDefaultStatusToAvailable()
+        {
+            var property = new Property(
+                CreateValidClient(),
+                CreateValidAddress(),
+                new Money(1000m),
+                PropertyType.Apartment
+            );
+
+            Assert.Equal(PropertyStatus.Available, property.Status);
+        }
+
+        [Fact]
+        public void ShouldRequireAddress()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+                new Property(CreateValidClient(), null!, new Money(1000m), PropertyType.House)
+            );
+        }
+
+        [Fact]
+        public void ShouldRequireMonthlyRent()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+                new Property(CreateValidClient(), CreateValidAddress(), null!, PropertyType.House)
+            );
+        }
+    }
+}
