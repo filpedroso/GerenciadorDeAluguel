@@ -13,6 +13,12 @@ public class InMemoryPropertyRepository : IPropertyRepository
         return Task.FromResult(property);
     }
 
+    public Task<IReadOnlyList<Property>> GetAllAsync(CancellationToken ct = default)
+    {
+        IReadOnlyList<Property> list = _store.Values.ToList();
+        return Task.FromResult(list);
+    }
+
     public Task SaveAsync(Property property, CancellationToken ct = default)
     {
         _store[property.Id] = property;

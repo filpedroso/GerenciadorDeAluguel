@@ -21,7 +21,11 @@ public class InMemoryReservationRepository : IReservationRepository
 
     public int Count => _store.Count;
 
-    public IReadOnlyList<Reservation> GetAll() => _store.Values.ToList();
+    public Task<IReadOnlyList<Reservation>> GetAllAsync(CancellationToken ct = default)
+    {
+        IReadOnlyList<Reservation> list = _store.Values.ToList();
+        return Task.FromResult(list);
+    }
 
     public void Clear() => _store.Clear();
 }
