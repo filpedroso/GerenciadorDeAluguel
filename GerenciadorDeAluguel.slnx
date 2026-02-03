@@ -1,3 +1,10 @@
 <Solution>
+  <Folder Name="/GerenciadorDeAluguel/">
+    <Project Path="GerenciadorDeAluguel/Infrastructure/GerenciadorDeAluguel.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/GerenciadorDeAluguel.Api/GerenciadorDeAluguel.Api.csproj" />
+    <Project Path="src/GerenciadorDeAluguel.Application/GerenciadorDeAluguel.Application.csproj" />
+  </Folder>
   <Project Path="GerenciadorDeAluguel/GerenciadorDeAluguel.csproj" />
 </Solution>
