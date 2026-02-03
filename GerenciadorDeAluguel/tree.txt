@@ -1,0 +1,55 @@
+.
+├── API
+│   └── Program.cs
+├── Application
+│   ├── DTOs
+│   │   ├── CreateReservationCommandDTO.cs
+│   │   └── RegisterClientDTO.cs
+│   ├── Ports
+│   │   ├── IClientRepository.cs
+│   │   ├── IPropertyRepository.cs
+│   │   └── IReservationRepository.cs
+│   └── Services
+│       ├── CancelReservationService.cs
+│       ├── CreateReservationService.cs
+│       ├── GetReservationByIdService.cs
+│       └── RegisterClientService.cs
+├── Domain
+│   ├── Entities
+│   │   ├── Client.cs
+│   │   ├── Property.cs
+│   │   └── Reservation.cs
+│   ├── Enums
+│   │   ├── PropertyStatus.cs
+│   │   └── PropertyType.cs
+│   └── ValueObjects
+│       ├── Address.cs
+│       ├── Document.cs
+│       ├── DocumentValidator.cs
+│       ├── Money.cs
+│       └── Period.cs
+├── GerenciadorDeAluguel.csproj
+├── Tests
+│   ├── Builders
+│   │   └── TestDataBuilder.cs
+│   ├── InMemoryFakes
+│   │   ├── InMemoryClientRepository.cs
+│   │   ├── InMemoryPropertyRepository.cs
+│   │   └── InMemoryReservationRepository.cs
+│   ├── TestDomainObjects
+│   │   ├── TestClient.cs
+│   │   ├── TestDocument.cs
+│   │   ├── TestProperty.cs
+│   │   └── TestReservation.cs
+│   ├── TestServices
+│   │   ├── TestCancelReservationService.cs
+│   │   ├── TestCreateReservationService.cs
+│   │   ├── TestGetReservationByIdService.cs
+│   │   └── TestRegisterClientService.cs
+│   └── TestValueObjects
+│       ├── TestAddress.cs
+│       ├── TestMoney.cs
+│       └── TestPeriod.cs
+
+
+41 directories, 81 files

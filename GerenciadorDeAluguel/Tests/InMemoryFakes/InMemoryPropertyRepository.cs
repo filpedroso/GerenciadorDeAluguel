@@ -13,10 +13,13 @@ public class InMemoryPropertyRepository : IPropertyRepository
         return Task.FromResult(property);
     }
 
-    public void Add(Property property)
+    public Task SaveAsync(Property property, CancellationToken ct = default)
     {
         _store[property.Id] = property;
+        return Task.CompletedTask;
     }
+
+    public void Add(Property property) => _store[property.Id] = property;
 
     public int Count => _store.Count;
 
