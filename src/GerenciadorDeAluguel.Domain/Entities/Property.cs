@@ -5,11 +5,11 @@ namespace GerenciadorDeAluguel.Domain.Entities
 {
     public class Property
     {
-        public Guid Id { get; }
-        public Client Owner { get; }
-        public Address Address { get; }
-        public Money MonthlyRent { get; }
-        public PropertyType Type { get; }
+        public Guid Id { get; private set; }
+        public Client Owner { get; private set; }
+        public Address Address { get; private set; }
+        public Money MonthlyRent { get; private set; }
+        public PropertyType Type { get; private set; }
         public PropertyStatus Status { get; private set; }
 
         public Property(Client owner, Address address, Money monthlyRent, PropertyType type)
@@ -33,5 +33,9 @@ namespace GerenciadorDeAluguel.Domain.Entities
         {
             Status = newStatus;
         }
+
+        #pragma warning disable CS8618
+        private Property() { }  // EF Core only
+        #pragma warning restore CS8618
     }
 }

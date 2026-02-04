@@ -5,11 +5,11 @@ namespace GerenciadorDeAluguel.Domain.Entities
 {
     public class Reservation
     {
-        public Guid Id { get; }
-        public Client Tenant { get; }
-        public Property Property { get; }
-        public Period Period { get; }
-        public Money MonthlyRent { get; }
+        public Guid Id { get; private set; }
+        public Client Tenant { get; private set; }
+        public Property Property { get; private set; }
+        public Period Period { get; private set; }
+        public Money MonthlyRent { get; private set; }
         public bool IsCancelled { get; private set; }
         public DateTime? CancelledAt { get; private set; }
 
@@ -46,5 +46,9 @@ namespace GerenciadorDeAluguel.Domain.Entities
             IsCancelled = true;
             CancelledAt = DateTime.UtcNow;
         }
+
+        #pragma warning disable CS8618
+        private Reservation() { }  // EF Core only
+        #pragma warning restore CS8618
     }
 }

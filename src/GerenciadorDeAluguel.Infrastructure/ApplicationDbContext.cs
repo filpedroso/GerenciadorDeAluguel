@@ -23,7 +23,18 @@ public class ApplicationDbContext : DbContext
             {
                 d.Property(x => x.Value).HasColumnName("Document");
             });
+            e.OwnsOne(c => c.ResidentialAddress, a =>
+            {
+                a.Property(x => x.Street).HasColumnName("ResidentialStreet");
+                a.Property(x => x.Number).HasColumnName("ResidentialNumber");
+                a.Property(x => x.ZipCode).HasColumnName("ResidentialZipCode");
+                a.Property(x => x.City).HasColumnName("ResidentialCity");
+                a.Property(x => x.State).HasColumnName("ResidentialState");
+                a.Property(x => x.Complement).HasColumnName("ResidentialComplement");
+            });
         });
+
+        
 
         mb.Entity<Property>(e =>
         {
@@ -56,7 +67,10 @@ public class ApplicationDbContext : DbContext
                 p.Property(x => x.Start).HasColumnName("PeriodStart");
                 p.Property(x => x.End).HasColumnName("PeriodEnd");
             });
-
+            e.OwnsOne(r => r.MonthlyRent, m =>
+            {
+                m.Property(x => x.Value).HasColumnName("ReservationMonthlyRent");
+            });
             // relations
             e.HasOne(r => r.Tenant).WithMany();
             e.HasOne(r => r.Property).WithMany();

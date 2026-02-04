@@ -5,11 +5,11 @@ namespace GerenciadorDeAluguel.Domain.Entities
 {
     public class Client
     {
-        public Guid Id { get; }
-        public string Name { get; }
-        public string Email { get; }
-        public string Phone { get; }
-        public Document DocumentNumber { get; }
+        public Guid Id { get; private set; }
+        public string Name { get; private set; }
+        public string Email { get; private set; }
+        public string Phone { get; private set; }
+        public Document DocumentNumber { get; private set; }
         public Address? ResidentialAddress { get; private set; }
 
         public Client(
@@ -28,24 +28,22 @@ namespace GerenciadorDeAluguel.Domain.Entities
                 throw new ArgumentException("Client must have a phone number", nameof(phone));
             if (documentNumber == null)
                 throw new ArgumentNullException(nameof(documentNumber), "Client must have a CPF or CNPJ");
+            
+            Id = Guid.NewGuid();
             Name = name;
             Email = email;
             Phone = phone;
             DocumentNumber = documentNumber;
-            Id = Guid.NewGuid();
             ResidentialAddress = residentialAddress;
         }
+
         public void UpdateAddress(Address address)
         {
             ResidentialAddress = address;
         }
 
-        private Client()
-        {
-            Name = null!;
-            Email = null!;
-            Phone = null!;
-            DocumentNumber = null!;
-        }
+        #pragma warning disable CS8618
+        private Client() { }  // EF Core only
+        #pragma warning restore CS8618
     }
 }
