@@ -1,6 +1,7 @@
 .
 ├── Directory.Build.props
-├── GerenciadorDeAluguel.slnx
+├── GerenciadorDeAluguel.sln
+├── GerenciadorDeAluguel.slnx.old
 ├── src
 │   ├── GerenciadorDeAluguel.Api
 │   │   ├── GerenciadorDeAluguel.Api.csproj
@@ -9,27 +10,7 @@
 │   │   ├── Properties
 │   │   │   └── launchSettings.json
 │   │   ├── appsettings.Development.json
-│   │   ├── appsettings.json
-│   │   ├── bin
-│   │   │   └── Debug
-│   │   │       └── net8.0
-│   │   └── obj
-│   │       ├── Debug
-│   │       │   └── net8.0
-│   │       │       ├── GerenciadorDeAluguel.Api.AssemblyInfo.cs
-│   │       │       ├── GerenciadorDeAluguel.Api.AssemblyInfoInputs.cache
-│   │       │       ├── GerenciadorDeAluguel.Api.GeneratedMSBuildEditorConfig.editorconfig
-│   │       │       ├── GerenciadorDeAluguel.Api.GlobalUsings.g.cs
-│   │       │       ├── GerenciadorDeAluguel.Api.assets.cache
-│   │       │       ├── GerenciadorDeAluguel.Api.csproj.AssemblyReference.cache
-│   │       │       ├── GerenciadorDeAluguel.Api.csproj.FileListAbsolute.txt
-│   │       │       ├── ref
-│   │       │       └── refint
-│   │       ├── GerenciadorDeAluguel.Api.csproj.nuget.dgspec.json
-│   │       ├── GerenciadorDeAluguel.Api.csproj.nuget.g.props
-│   │       ├── GerenciadorDeAluguel.Api.csproj.nuget.g.targets
-│   │       ├── project.assets.json
-│   │       └── project.nuget.cache
+│   │   └── appsettings.json
 │   ├── GerenciadorDeAluguel.Application
 │   │   ├── DTOs
 │   │   │   ├── CreateReservationCommandDTO.cs
@@ -40,36 +21,17 @@
 │   │   │   ├── IClientRepository.cs
 │   │   │   ├── IPropertyRepository.cs
 │   │   │   └── IReservationRepository.cs
-│   │   ├── Services
-│   │   │   ├── CancelReservationService.cs
-│   │   │   ├── ChangePropertyStatusService.cs
-│   │   │   ├── CheckPropertyAvailabilityService.cs
-│   │   │   ├── CreateReservationService.cs
-│   │   │   ├── GetPropertyByIdService.cs
-│   │   │   ├── GetReservationByIdService.cs
-│   │   │   ├── ListAvailablePropertiesService.cs
-│   │   │   ├── ListReservationsService.cs
-│   │   │   ├── RegisterClientService.cs
-│   │   │   └── RegisterPropertyService.cs
-│   │   ├── bin
-│   │   │   └── Debug
-│   │   │       └── net8.0
-│   │   └── obj
-│   │       ├── Debug
-│   │       │   └── net8.0
-│   │       │       ├── GerenciadorDeAluguel.Application.AssemblyInfo.cs
-│   │       │       ├── GerenciadorDeAluguel.Application.AssemblyInfoInputs.cache
-│   │       │       ├── GerenciadorDeAluguel.Application.GeneratedMSBuildEditorConfig.editorconfig
-│   │       │       ├── GerenciadorDeAluguel.Application.GlobalUsings.g.cs
-│   │       │       ├── GerenciadorDeAluguel.Application.assets.cache
-│   │       │       ├── GerenciadorDeAluguel.Application.csproj.FileListAbsolute.txt
-│   │       │       ├── ref
-│   │       │       └── refint
-│   │       ├── GerenciadorDeAluguel.Application.csproj.nuget.dgspec.json
-│   │       ├── GerenciadorDeAluguel.Application.csproj.nuget.g.props
-│   │       ├── GerenciadorDeAluguel.Application.csproj.nuget.g.targets
-│   │       ├── project.assets.json
-│   │       └── project.nuget.cache
+│   │   └── Services
+│   │       ├── CancelReservationService.cs
+│   │       ├── ChangePropertyStatusService.cs
+│   │       ├── CheckPropertyAvailabilityService.cs
+│   │       ├── CreateReservationService.cs
+│   │       ├── GetPropertyByIdService.cs
+│   │       ├── GetReservationByIdService.cs
+│   │       ├── ListAvailablePropertiesService.cs
+│   │       ├── ListReservationsService.cs
+│   │       ├── RegisterClientService.cs
+│   │       └── RegisterPropertyService.cs
 │   ├── GerenciadorDeAluguel.Domain
 │   │   ├── Entities
 │   │   │   ├── Client.cs
@@ -79,18 +41,12 @@
 │   │   │   ├── PropertyStatus.cs
 │   │   │   └── PropertyType.cs
 │   │   ├── GerenciadorDeAluguel.Domain.csproj
-│   │   ├── ValueObjects
-│   │   │   ├── Address.cs
-│   │   │   ├── Document.cs
-│   │   │   ├── DocumentValidator.cs
-│   │   │   ├── Money.cs
-│   │   │   └── Period.cs
-│   │   └── obj
-│   │       ├── GerenciadorDeAluguel.Domain.csproj.nuget.dgspec.json
-│   │       ├── GerenciadorDeAluguel.Domain.csproj.nuget.g.props
-│   │       ├── GerenciadorDeAluguel.Domain.csproj.nuget.g.targets
-│   │       ├── project.assets.json
-│   │       └── project.nuget.cache
+│   │   └── ValueObjects
+│   │       ├── Address.cs
+│   │       ├── Document.cs
+│   │       ├── DocumentValidator.cs
+│   │       ├── Money.cs
+│   │       └── Period.cs
 │   └── GerenciadorDeAluguel.Infrastructure
 │       ├── ApplicationDbContext.cs
 │       ├── EfRepositories
@@ -100,64 +56,40 @@
 │       └── GerenciadorDeAluguel.Infrastructure.csproj
 ├── tests
 │   ├── GerenciadorDeAluguel.Api.Integration.Tests
-│   │   ├── GerenciadorDeAluguel.Api.Integration.Tests.csproj
-│   │   └── obj
-│   │       ├── GerenciadorDeAluguel.Api.Integration.Tests.csproj.nuget.dgspec.json
-│   │       ├── GerenciadorDeAluguel.Api.Integration.Tests.csproj.nuget.g.props
-│   │       ├── GerenciadorDeAluguel.Api.Integration.Tests.csproj.nuget.g.targets
-│   │       ├── project.assets.json
-│   │       └── project.nuget.cache
+│   │   └── GerenciadorDeAluguel.Api.Integration.Tests.csproj
 │   ├── GerenciadorDeAluguel.Application.Tests
-│   │   ├── Builders
-│   │   │   └── TestDataBuilder.cs
 │   │   ├── GerenciadorDeAluguel.Application.Tests.csproj
 │   │   ├── InMemoryFakes
 │   │   │   ├── InMemoryClientRepository.cs
 │   │   │   ├── InMemoryPropertyRepository.cs
 │   │   │   └── InMemoryReservationRepository.cs
-│   │   ├── TestServices
-│   │   │   ├── TestCancelReservationService.cs
-│   │   │   ├── TestChangePropertyStatusService.cs
-│   │   │   ├── TestCheckPropertyAvailabilityService.cs
-│   │   │   ├── TestCreateReservationService.cs
-│   │   │   ├── TestGetPropertyByIdService.cs
-│   │   │   ├── TestGetReservationByIdService.cs
-│   │   │   ├── TestListAvailablePropertiesService.cs
-│   │   │   ├── TestListReservationsService.cs
-│   │   │   ├── TestRegisterClientService.cs
-│   │   │   └── TestRegisterPropertyService.cs
-│   │   └── obj
-│   │       ├── GerenciadorDeAluguel.Application.Tests.csproj.nuget.dgspec.json
-│   │       ├── GerenciadorDeAluguel.Application.Tests.csproj.nuget.g.props
-│   │       ├── GerenciadorDeAluguel.Application.Tests.csproj.nuget.g.targets
-│   │       ├── project.assets.json
-│   │       └── project.nuget.cache
+│   │   └── TestServices
+│   │       ├── TestCancelReservationService.cs
+│   │       ├── TestChangePropertyStatusService.cs
+│   │       ├── TestCheckPropertyAvailabilityService.cs
+│   │       ├── TestCreateReservationService.cs
+│   │       ├── TestGetPropertyByIdService.cs
+│   │       ├── TestGetReservationByIdService.cs
+│   │       ├── TestListAvailablePropertiesService.cs
+│   │       ├── TestListReservationsService.cs
+│   │       ├── TestRegisterClientService.cs
+│   │       └── TestRegisterPropertyService.cs
 │   ├── GerenciadorDeAluguel.Domain.Tests
+│   │   ├── Builders
+│   │   │   └── TestDataBuilder.cs
 │   │   ├── GerenciadorDeAluguel.Domain.Tests.csproj
 │   │   ├── TestDomainObjects
 │   │   │   ├── TestClient.cs
 │   │   │   ├── TestDocument.cs
 │   │   │   ├── TestProperty.cs
 │   │   │   └── TestReservation.cs
-│   │   ├── TestValueObjects
-│   │   │   ├── TestAddress.cs
-│   │   │   ├── TestMoney.cs
-│   │   │   └── TestPeriod.cs
-│   │   └── obj
-│   │       ├── GerenciadorDeAluguel.Domain.Tests.csproj.nuget.dgspec.json
-│   │       ├── GerenciadorDeAluguel.Domain.Tests.csproj.nuget.g.props
-│   │       ├── GerenciadorDeAluguel.Domain.Tests.csproj.nuget.g.targets
-│   │       ├── project.assets.json
-│   │       └── project.nuget.cache
+│   │   └── TestValueObjects
+│   │       ├── TestAddress.cs
+│   │       ├── TestMoney.cs
+│   │       └── TestPeriod.cs
 │   └── GerenciadorDeAluguel.Infrastructure.Tests
 │       ├── EfIntegrationTests.cs
-│       ├── GerenciadorDeAluguel.Infrastructure.Tests.csproj
-│       └── obj
-│           ├── GerenciadorDeAluguel.Infrastructure.Tests.csproj.nuget.dgspec.json
-│           ├── GerenciadorDeAluguel.Infrastructure.Tests.csproj.nuget.g.props
-│           ├── GerenciadorDeAluguel.Infrastructure.Tests.csproj.nuget.g.targets
-│           ├── project.assets.json
-│           └── project.nuget.cache
+│       └── GerenciadorDeAluguel.Infrastructure.Tests.csproj
 └── tree.txt
 
-45 directories, 116 files
+24 directories, 69 files
