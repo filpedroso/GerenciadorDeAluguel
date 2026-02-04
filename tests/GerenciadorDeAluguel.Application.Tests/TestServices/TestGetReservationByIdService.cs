@@ -1,7 +1,7 @@
 using Xunit;
 using GerenciadorDeAluguel.Application.Services;
 using GerenciadorDeAluguel.Tests.InMemoryFakes;
-using static GerenciadorDeAluguel.Tests.Builders.TestDataBuilder;
+using static GerenciadorDeAluguel.Domain.Tests.Builders.TestDataBuilder;
 
 namespace GerenciadorDeAluguel.Tests.TestServices;
 

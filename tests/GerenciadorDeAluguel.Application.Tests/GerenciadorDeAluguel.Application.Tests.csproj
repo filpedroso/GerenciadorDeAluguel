@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\GerenciadorDeAluguel.Application\GerenciadorDeAluguel.Application.csproj" />
     <ProjectReference Include="..\..\src\GerenciadorDeAluguel.Domain\GerenciadorDeAluguel.Domain.csproj" />
+    <ProjectReference Include="..\GerenciadorDeAluguel.Domain.Tests\GerenciadorDeAluguel.Domain.Tests.csproj" />
   </ItemGroup>
 
 </Project>

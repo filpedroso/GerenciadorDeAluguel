@@ -1,7 +1,7 @@
 using GerenciadorDeAluguel.Application.Services;
 using GerenciadorDeAluguel.Domain.Enums;
 using GerenciadorDeAluguel.Tests.InMemoryFakes;
-using GerenciadorDeAluguel.Tests.Builders;
+using GerenciadorDeAluguel.Domain.Tests.Builders;
 using Xunit;
 
 namespace GerenciadorDeAluguel.Tests.TestServices;

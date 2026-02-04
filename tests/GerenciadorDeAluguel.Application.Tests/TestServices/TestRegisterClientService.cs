@@ -4,7 +4,7 @@ using GerenciadorDeAluguel.Application.DTOs;
 using GerenciadorDeAluguel.Domain.ValueObjects;
 using GerenciadorDeAluguel.Domain.Entities;
 using GerenciadorDeAluguel.Tests.InMemoryFakes;
-using GerenciadorDeAluguel.Tests.Builders;
+using GerenciadorDeAluguel.Domain.Tests.Builders;
 
 namespace GerenciadorDeAluguel.Tests.TestServices;
 

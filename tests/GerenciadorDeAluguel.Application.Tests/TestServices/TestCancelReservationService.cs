@@ -2,7 +2,7 @@ using GerenciadorDeAluguel.Application.DTOs;
 using GerenciadorDeAluguel.Application.Services;
 using GerenciadorDeAluguel.Tests.InMemoryFakes;
 using Xunit;
-using static GerenciadorDeAluguel.Tests.Builders.TestDataBuilder;
+using static GerenciadorDeAluguel.Domain.Tests.Builders.TestDataBuilder;
 
 namespace GerenciadorDeAluguel.Tests.TestServices
 {
