@@ -23,6 +23,12 @@ public class EfClientRepository : IClientRepository
         return await _db.Clients.FirstOrDefaultAsync(c => c.DocumentNumber.Value == document.Value, ct);
     }
 
+    public async Task<IEnumerable<Client>> GetAllAsync(CancellationToken ct = default)
+    {
+        return await _db.Clients
+        .ToListAsync(ct);
+    }
+
     public async Task SaveAsync(Client client, CancellationToken ct = default)
     {
         var exists = await _db.Clients.FindAsync(new object[] { client.Id }, ct);

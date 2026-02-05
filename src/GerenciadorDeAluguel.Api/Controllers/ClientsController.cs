@@ -14,14 +14,30 @@ namespace GerenciadorDeAluguel.Api.Controllers;
 public class ClientsController : ControllerBase
 {
     private readonly RegisterClientService _registerService;
+    private readonly ListClientsService _listService;
     private readonly IClientRepository _repository;
 
     public ClientsController(
         RegisterClientService registerService,
+        ListClientsService listService,
         IClientRepository repository)
     {
         _registerService = registerService;
+        _listService = listService;
         _repository = repository;
+    }
+
+    /// <summary>
+    /// List all registered clients
+    /// </summary>
+    /// <returns>List of clients</returns>
+    /// <response code="200">List of clients returned successfully</response>
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAll(CancellationToken ct)
+    {
+        var clients = await _listService.GetAllAsync(ct);
+        return Ok(clients);
     }
 
     /// <summary>

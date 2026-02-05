@@ -63,6 +63,7 @@ builder.Services.AddScoped<GetPropertyByIdService>();
 builder.Services.AddScoped<GetReservationByIdService>();
 builder.Services.AddScoped<ListAvailablePropertiesService>();
 builder.Services.AddScoped<ListReservationsService>();
+builder.Services.AddScoped<ListClientsService>();
 
 
 // ============================================

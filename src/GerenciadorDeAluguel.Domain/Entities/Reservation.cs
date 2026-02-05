@@ -35,6 +35,7 @@ namespace GerenciadorDeAluguel.Domain.Entities
             if (property.Status != PropertyStatus.Available)
                 throw new InvalidOperationException("Property is not available for reservation");
 
+
             Id = Guid.NewGuid();
             Tenant = tenant;
             Property = property;

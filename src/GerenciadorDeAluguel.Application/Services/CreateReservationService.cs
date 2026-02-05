@@ -2,6 +2,7 @@ using GerenciadorDeAluguel.Application.DTOs;
 using GerenciadorDeAluguel.Application.Ports;
 using GerenciadorDeAluguel.Domain.Entities;
 using GerenciadorDeAluguel.Domain.ValueObjects;
+using GerenciadorDeAluguel.Domain.Enums;
 
 namespace GerenciadorDeAluguel.Application.Services;
 
@@ -39,6 +40,8 @@ public class CreateReservationService
 
         // 4. Create domain entity (business rules enforced here)
         var reservation = new Reservation(client, property, period, property.MonthlyRent);
+
+        property.ChangeStatus(PropertyStatus.Rented);
 
         // 5. Persist the new reservation
         await _reservationRepo.SaveAsync(reservation, ct);
