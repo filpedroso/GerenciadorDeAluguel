@@ -1,0 +1,9 @@
+namespace GerenciadorDeAluguel.Application.DTOs;
+
+public class CreateReservationCommandDTO
+{
+    public Guid ClientId { get; set; }
+    public Guid PropertyId { get; set; }
+    public DateTime CheckIn { get; set; }
+    public DateTime CheckOut { get; set; }
+}

@@ -15,12 +15,20 @@ public class EfReservationRepository : IReservationRepository
 
     public async Task<Reservation?> GetByIdAsync(Guid reservationId, CancellationToken ct = default)
     {
-        return await _db.Reservations.FindAsync(new object[] { reservationId }, ct);
+        return await _db.Reservations
+            .Include(r => r.Tenant)
+            .Include(r => r.Property)
+            .ThenInclude(p => p.Owner)
+            .FirstOrDefaultAsync(r => r.Id == reservationId, ct);
     }
 
     public async Task<IReadOnlyList<Reservation>> GetAllAsync(CancellationToken ct = default)
     {
-        return await _db.Reservations.ToListAsync(ct);
+        return await _db.Reservations
+            .Include(r => r.Tenant)
+            .Include(r => r.Property)
+            .ThenInclude(p => p.Owner)
+            .ToListAsync(ct);
     }
 
     public async Task SaveAsync(Reservation reservation, CancellationToken ct = default)

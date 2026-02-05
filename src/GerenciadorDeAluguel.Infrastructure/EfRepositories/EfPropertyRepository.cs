@@ -15,12 +15,16 @@ public class EfPropertyRepository : IPropertyRepository
 
     public async Task<Property?> GetByIdAsync(Guid propertyId, CancellationToken ct = default)
     {
-        return await _db.Properties.FindAsync(new object[] { propertyId }, ct);
+        return await _db.Properties
+        .Include(p => p.Owner)
+        .FirstOrDefaultAsync(p => p.Id == propertyId, ct);
     }
 
     public async Task<IReadOnlyList<Property>> GetAllAsync(CancellationToken ct = default)
     {
-        return await _db.Properties.ToListAsync(ct);
+        return await _db.Properties
+        .Include(p => p.Owner)
+        .ToListAsync(ct);
     }
 
     public async Task SaveAsync(Property property, CancellationToken ct = default)

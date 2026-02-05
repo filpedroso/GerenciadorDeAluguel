@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.Sqlite;
 using GerenciadorDeAluguel.Infrastructure;
 using GerenciadorDeAluguel.Application.Ports;
 using GerenciadorDeAluguel.Infrastructure.EfRepositories;
@@ -6,19 +7,31 @@ using GerenciadorDeAluguel.Application.Services;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
-// ============================================
-// 1. CONTROLLERS
-// ============================================
-builder.Services.AddControllers();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new System.Text.Json.Serialization.JsonStringEnumConverter()
+        );
+    });
+
 
 // ============================================
-// 2. ENTITY FRAMEWORK CORE (SQLite In-Memory)
+//  ENTITY FRAMEWORK CORE (SQLite In-Memory)
 // ============================================
+// Create a shared connection that will be reused across all DbContext instances
+
+
+var sharedConnection = new SqliteConnection("DataSource=:memory:");
+sharedConnection.Open();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlite("DataSource=:memory:");
+    options.UseSqlite(sharedConnection); // Use the SAME connection for all requests
     
     // Development helpers (shows SQL queries and parameter values in logs)
     if (builder.Environment.IsDevelopment())
@@ -28,15 +41,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     }
 });
 
+
 // ============================================
-// 3. REPOSITORIES (Infrastructure → Application Ports)
+//  DI (Infrastructure → Application Ports)
 // ============================================
 builder.Services.AddScoped<IClientRepository, EfClientRepository>();
 builder.Services.AddScoped<IPropertyRepository, EfPropertyRepository>();
 builder.Services.AddScoped<IReservationRepository, EfReservationRepository>();
 
+
 // ============================================
-// 4. APPLICATION SERVICES
+//  DI (Application Services)
 // ============================================
 builder.Services.AddScoped<RegisterClientService>();
 builder.Services.AddScoped<RegisterPropertyService>();
@@ -49,8 +64,9 @@ builder.Services.AddScoped<GetReservationByIdService>();
 builder.Services.AddScoped<ListAvailablePropertiesService>();
 builder.Services.AddScoped<ListReservationsService>();
 
+
 // ============================================
-// 5. SWAGGER/OPENAPI
+//  SWAGGER
 // ============================================
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -66,7 +82,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
     
-    // Optional: Enable XML documentation comments in Swagger
+    // Enable XML documentation comments in Swagger
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     if (File.Exists(xmlPath))
@@ -75,31 +91,31 @@ builder.Services.AddSwaggerGen(options =>
     }
 });
 
-// ============================================
-// BUILD APPLICATION
-// ============================================
+
 var app = builder.Build();
 
+
 // ============================================
-// 6. INITIALIZE IN-MEMORY DATABASE
+//  Initialize In-Memory DB
 // ============================================
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    
-    // CRITICAL: Keep connection open for SQLite in-memory
-    // Without this, the database disappears after this block
-    dbContext.Database.OpenConnection();
-    
-    // Create tables based on DbSet entities
     dbContext.Database.EnsureCreated();
-    
-    // Optional: Seed initial test data
-    // SeedDatabase(dbContext);
+    Console.WriteLine("✅ Database initialized successfully");
 }
 
+// Register cleanup on shutdown
+app.Lifetime.ApplicationStopping.Register(() =>
+{
+    sharedConnection.Close();
+    sharedConnection.Dispose();
+    Console.WriteLine("🔒 Database connection closed");
+});
+
+
 // ============================================
-// 7. MIDDLEWARE PIPELINE
+//  Middleware Pipeline
 // ============================================
 if (app.Environment.IsDevelopment())
 {
@@ -119,5 +135,3 @@ app.Run();
 
 // Make Program accessible to integration tests
 public partial class Program { }
-
-
