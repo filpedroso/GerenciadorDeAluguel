@@ -41,12 +41,14 @@ public class CreateReservationService
         // 4. Create domain entity (business rules enforced here)
         var reservation = new Reservation(client, property, period, property.MonthlyRent);
 
+        // 5. Change property status and persist it
         property.ChangeStatus(PropertyStatus.Rented);
+        await _propertyRepo.SaveAsync(property, ct);
 
-        // 5. Persist the new reservation
+        // 6. Persist the new reservation
         await _reservationRepo.SaveAsync(reservation, ct);
 
-        // 6. Return the ID
+        // 7. Return the ID
         return reservation.Id;
     }
 }

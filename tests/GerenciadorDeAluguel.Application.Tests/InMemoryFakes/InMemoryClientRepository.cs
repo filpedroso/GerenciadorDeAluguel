@@ -15,6 +15,11 @@ public class InMemoryClientRepository : IClientRepository
         return Task.FromResult(client);
     }
 
+    public Task<IEnumerable<Client>> GetAllAsync(CancellationToken ct = default)
+    {
+        return Task.FromResult<IEnumerable<Client>>(_clients.Values);
+    }
+
     public Task<Client?> GetByDocumentAsync(Document document, CancellationToken ct = default)
     {
         _clientsByDocument.TryGetValue(document.Value, out var client);
