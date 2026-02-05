@@ -1,5 +1,8 @@
 namespace GerenciadorDeAluguel.Domain.ValueObjects
 {
+    /// <summary>
+    /// Represents a physical address.
+    /// </summary>
     public record Address
     {
         public string Street { get; }

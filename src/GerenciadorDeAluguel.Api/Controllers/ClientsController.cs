@@ -71,6 +71,10 @@ public class ClientsController : ControllerBase
     /// Get client by document (CPF/CNPJ)
     /// </summary>
     /// <param name="documentNumber">CPF or CNPJ number</param>
+    /// <returns>Client data</returns>
+    /// <response code="200">Client found</response>
+    /// <response code="404">Client not found</response>
+    /// <response code="400">Invalid document number</response>
     [HttpGet("document/{documentNumber}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

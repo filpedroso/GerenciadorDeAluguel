@@ -1,7 +1,13 @@
 namespace GerenciadorDeAluguel.Domain.ValueObjects
 {
+    /// <summary>
+    /// Represents a Brazilian document (CPF or CNPJ).
+    /// </summary>
     public record Document
     {
+        /// <summary>
+        /// The normalized document value.
+        /// </summary>
         public string Value { get; }
         public bool IsCpf { get; }
         public bool IsCnpj { get; }

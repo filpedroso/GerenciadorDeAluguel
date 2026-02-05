@@ -2,6 +2,9 @@ using GerenciadorDeAluguel.Domain.Enums;
 
 namespace GerenciadorDeAluguel.Application.DTOs;
 
+/// <summary>
+/// Data transfer object for registering a new property.
+/// </summary>
 public class RegisterPropertyDTO
 {
     public PropertyType Type { get; set; }
@@ -15,6 +18,9 @@ public class RegisterPropertyDTO
     public string? Complement { get; set; }
     
     // Price components
+    /// <summary>
+    /// Monthly rent amount in BRL.
+    /// </summary>
     public decimal MonthlyRent { get; set; }
 
     // Owner

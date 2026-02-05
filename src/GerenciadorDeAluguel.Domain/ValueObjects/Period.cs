@@ -1,5 +1,8 @@
 namespace GerenciadorDeAluguel.Domain.ValueObjects
 {
+    /// <summary>
+    /// Represents a date period with start and end dates.
+    /// </summary>
     public record Period
     {
         public DateOnly Start { get; }

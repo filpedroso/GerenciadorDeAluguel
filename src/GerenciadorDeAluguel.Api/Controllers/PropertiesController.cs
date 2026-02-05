@@ -6,7 +6,7 @@ using GerenciadorDeAluguel.Domain.Enums;
 namespace GerenciadorDeAluguel.Api.Controllers;
 
 /// <summary>
-/// Manages property operations
+/// Provides endpoints for managing properties in the rental system.
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
@@ -33,13 +33,13 @@ public class PropertiesController : ControllerBase
     }
 
     /// <summary>
-    /// Register a new property
+    /// Registers a new property in the rental management system.
     /// </summary>
-    /// <param name="dto">Property registration data</param>
-    /// <param name="ct">Cancellation token</param>
-    /// <returns>Created property ID</returns>
-    /// <response code="201">Property successfully registered</response>
-    /// <response code="400">Invalid data or owner not found</response>
+    /// <param name="dto">The data required to register the property.</param>
+    /// <param name="ct">Cancellation token to cancel the operation.</param>
+    /// <returns>The unique identifier of the created property.</returns>
+    /// <response code="201">Property successfully registered.</response>
+    /// <response code="400">Invalid data provided or owner not found.</response>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -62,13 +62,13 @@ public class PropertiesController : ControllerBase
     }
 
     /// <summary>
-    /// Get property by ID
+    /// Retrieves a property by its unique identifier.
     /// </summary>
-    /// <param name="id">Property unique identifier</param>
-    /// <param name="ct">Cancellation token</param>
-    /// <returns>Property data</returns>
-    /// <response code="200">Property found</response>
-    /// <response code="404">Property not found</response>
+    /// <param name="id">The unique identifier of the property.</param>
+    /// <param name="ct">Cancellation token to cancel the operation.</param>
+    /// <returns>The property data.</returns>
+    /// <response code="200">Property found.</response>
+    /// <response code="404">Property not found.</response>
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -86,11 +86,11 @@ public class PropertiesController : ControllerBase
     }
 
     /// <summary>
-    /// List all available properties
+    /// Retrieves a list of all available properties.
     /// </summary>
-    /// <param name="ct">Cancellation token</param>
-    /// <returns>List of available properties</returns>
-    /// <response code="200">Returns the list of available properties</response>
+    /// <param name="ct">Cancellation token to cancel the operation.</param>
+    /// <returns>A list of available properties.</returns>
+    /// <response code="200">Returns the list of available properties.</response>
     [HttpGet("available")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> ListAvailable(CancellationToken ct = default)
@@ -100,15 +100,15 @@ public class PropertiesController : ControllerBase
     }
 
     /// <summary>
-    /// Change property status
+    /// Changes the status of a property.
     /// </summary>
-    /// <param name="id">Property unique identifier</param>
-    /// <param name="dto">New status (Available, Rented, UnderMaintenance)</param>
-    /// <param name="ct">Cancellation token</param>
-    /// <returns>No content</returns>
-    /// <response code="204">Status successfully changed</response>
-    /// <response code="400">Invalid status value</response>
-    /// <response code="404">Property not found</response>
+    /// <param name="id">The unique identifier of the property.</param>
+    /// <param name="dto">The new status for the property.</param>
+    /// <param name="ct">Cancellation token to cancel the operation.</param>
+    /// <returns>No content.</returns>
+    /// <response code="204">Status successfully changed.</response>
+    /// <response code="400">Invalid status value.</response>
+    /// <response code="404">Property not found.</response>
     [HttpPatch("{id}/status")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -134,13 +134,13 @@ public class PropertiesController : ControllerBase
     }
 
     /// <summary>
-    /// Check if property is available
+    /// Checks if a property is available for rental.
     /// </summary>
-    /// <param name="id">Property unique identifier</param>
-    /// <param name="ct">Cancellation token</param>
-    /// <returns>Availability status</returns>
-    /// <response code="200">Returns availability status</response>
-    /// <response code="404">Property not found</response>
+    /// <param name="id">The unique identifier of the property.</param>
+    /// <param name="ct">Cancellation token to cancel the operation.</param>
+    /// <returns>The availability status of the property.</returns>
+    /// <response code="200">Returns availability status.</response>
+    /// <response code="404">Property not found.</response>
     [HttpGet("{id}/availability")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

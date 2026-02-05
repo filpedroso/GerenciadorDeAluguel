@@ -3,12 +3,18 @@ using GerenciadorDeAluguel.Domain.ValueObjects;
 
 namespace GerenciadorDeAluguel.Domain.Entities
 {
+    /// <summary>
+    /// Represents a client in the rental system.
+    /// </summary>
     public class Client
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }
         public string Email { get; private set; }
         public string Phone { get; private set; }
+        /// <summary>
+        /// The document (CPF or CNPJ) of the client.
+        /// </summary>
         public Document DocumentNumber { get; private set; }
         public Address? ResidentialAddress { get; private set; }
 

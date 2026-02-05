@@ -18,6 +18,7 @@ public class HealthController : ControllerBase
     /// <summary>
     /// Health check - verifies API and database are running
     /// </summary>
+    /// <returns>Health status information</returns>
     [HttpGet]
     public async Task<IActionResult> Get()
     {

@@ -3,6 +3,9 @@ using GerenciadorDeAluguel.Domain.ValueObjects;
 
 namespace GerenciadorDeAluguel.Domain.Entities
 {
+    /// <summary>
+    /// Represents a reservation of a property by a client.
+    /// </summary>
     public class Reservation
     {
         public Guid Id { get; private set; }
@@ -39,6 +42,9 @@ namespace GerenciadorDeAluguel.Domain.Entities
             MonthlyRent = monthlyRent;
         }
 
+        /// <summary>
+        /// Cancels the reservation.
+        /// </summary>
         public void Cancel()
         {
             if (IsCancelled)

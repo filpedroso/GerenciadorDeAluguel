@@ -1,8 +1,14 @@
 namespace GerenciadorDeAluguel.Application.DTOs
 {
+    /// <summary>
+    /// Data transfer object for registering a new client.
+    /// </summary>
     public class RegisterClientDTO
     {
         public string Name { get; set; } = string.Empty;
+        /// <summary>
+        /// Document number (CPF or CNPJ).
+        /// </summary>
         public string DocumentNumber { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
