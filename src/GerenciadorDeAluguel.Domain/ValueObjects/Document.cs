@@ -17,7 +17,7 @@ namespace GerenciadorDeAluguel.Domain.ValueObjects
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Cpf or Cnpj identifier is required", nameof(value));
 
-            var normalized = Normalize(value);
+            var normalized = RemoveAllButAlphanum(value);
 
             if (IsCpfFormat(normalized))
             {
@@ -39,7 +39,7 @@ namespace GerenciadorDeAluguel.Domain.ValueObjects
                 throw new ArgumentException("Value is neither valid CPF nor CNPJ", nameof(value));
         }
 
-        private static string Normalize(string value) =>
+        private static string RemoveAllButAlphanum(string value) =>
             new string(value.Where(char.IsAsciiLetterOrDigit).ToArray());
 
         private static bool IsCpfFormat(string value) => value.Length == 11;
